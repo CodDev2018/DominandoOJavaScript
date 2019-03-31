@@ -1,0 +1,7 @@
+console.log(typeof '')
+console.log(typeof 1)
+console.log(typeof null)
+console.log(typeof undefined)
+console.log(typeof {})
+console.log(typeof [1, 2, 3])
+console.log(typeof (50 == 50))
