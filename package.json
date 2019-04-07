@@ -1,0 +1,23 @@
+{
+  "name": "DominandoOJavaScript",
+  "version": "1.0.0",
+  "description": "Códigos do Curso Online Dominando o JavaScript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CodDev2018/DominandoOJavaScript.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CodDev2018/DominandoOJavaScript/issues"
+  },
+  "homepage": "https://github.com/CodDev2018/DominandoOJavaScript#readme",
+  "dependencies": {
+    "readline-sync": "^1.4.9"
+  }
+}
