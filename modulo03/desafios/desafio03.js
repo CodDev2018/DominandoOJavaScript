@@ -12,6 +12,7 @@ reader.question("Entre com três números inteiros e positivos: ", function (num
     v1 = parseInt(v1)
     v2 = parseInt(v2)
     v3 = parseInt(v3)
+    
     if (v1 < v2 && v2 < v3) {
         console.log(`${v1}, ${v2}, ${v3}`)
         return
