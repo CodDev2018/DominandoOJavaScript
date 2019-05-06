@@ -1,0 +1,25 @@
+<html>
+
+<head>
+    <title>Dominando o JavaScript - Módulo 08</title>
+</head>
+
+<body>
+    <p>Essa página fica verde quando segura pressionada a tecla V.</p>
+
+    <script>
+        addEventListener('keydown', event => {
+            if (event.key === 'v') {
+                document.body.style.background = '#00FF00'
+            }
+        })
+
+        addEventListener('keyup', event => {
+            if (event.key === 'v') {
+                document.body.style.background = ''
+            }
+        })
+    </script>
+</body>
+
+</html>

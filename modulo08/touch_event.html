@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Dominando o JavaScript - Módulo 08</title>
+    <style>
+        .dot {
+            height: 100px;
+            width: 100px;
+            border-radius: 50px;
+            border: 2px solid #FF9900;
+            position: absolute;
+            display: block;
+        }
+    </style>
+</head>
+
+
+<body>
+
+    <p>Toque nesta página</p>
+
+    <script>
+        function update(event) {
+            for (let dot; dot = document.querySelector(".dot");) {
+                dot.remove();
+            }
+            for (let i = 0; i < event.touches.length; i++) {
+                let {
+                    pageX,
+                    pageY
+                } = event.touches[i]
+                let dot = document.createElement("div")
+                dot.className = 'dot'
+                dot.style.left = (pageX - 50) + 'px'
+                dot.style.top = (pageY - 50) + 'px'
+                document.body.appendChild(dot)
+            }
+        }
+
+        window.addEventListener('touchstart', update);
+        window.addEventListener('touchmove', update);
+        window.addEventListener('touchend', update);
+    </script>
+
+</body>
+
+</html>

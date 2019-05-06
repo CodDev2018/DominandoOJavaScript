@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Dominando o JavaScript - Módulo 08</title>
+    <style>
+        #progress {
+            border-bottom: 5px solid red;
+            width: 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+
+
+<body>
+
+    <div id="progress"></div>
+
+    <script>
+        document.body.appendChild(document.createTextNode(("Dominando o JavaScript\t").repeat(1000)))
+
+        let bar = document.querySelector("#progress")
+        window.addEventListener('scroll', () => {
+            let max = document.body.scrollHeight - window.innerHeight
+            bar.style.width = `${(pageYOffset / max)*100}%`
+        })
+    </script>
+
+</body>
+
+</html>

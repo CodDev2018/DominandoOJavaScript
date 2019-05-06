@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <title>Dominando o JavaScript</title>
+</head>
+
+<body>
+    <p style="text-align: center">
+        <img src="img/logo.png" style="position: relative">
+    </p>
+    <script>
+        var logo = document.querySelector("img");
+        var angle = 0,
+            lastTime = null;
+
+        function animate(time) {
+            if (lastTime != null)
+                angle += (time - lastTime) * 0.001;
+            lastTime = time;
+            logo.style.top = (Math.sin(angle) * 50) + "px";
+            logo.style.left = (Math.cos(angle) * 200) + "px";
+            requestAnimationFrame(animate);
+        }
+        requestAnimationFrame(animate);
+    </script>
+</body>
+
+</html>

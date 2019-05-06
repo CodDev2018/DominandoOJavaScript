@@ -1,0 +1,25 @@
+<html>
+
+<head>
+    <title>Dominando o JavaScript - Módulo 08</title>
+</head>
+
+<body>
+    <p>Parágrafo com <button>botão</button>.</p>
+
+    <script>
+        let para = document.querySelector('p')
+        let button = document.querySelector('button')
+
+        para.addEventListener('mousedown', () => {
+            console.log("Você clicou no parágrafo.")
+        })
+
+        button.addEventListener('mousedown', (event) => {
+            console.log("Você clicou no botão.")
+            if (event.which == 2 ) event.stopPropagation()
+        })
+    </script>
+</body>
+
+</html>

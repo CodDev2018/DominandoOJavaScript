@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Dominando o JavaScript - Módulo 08</title>
+</head>
+
+
+<body>
+
+    <form action="">
+        <div>
+            <label for="inputNome">Nome:</label>
+            <input type="text" id="inputNome" data-help="Entre com o nome completo">
+        </div>
+        <div>
+            <label for="inputNome">Idade:</label>
+            <input type="number" id="inputNome" data-help="Entre com a sua idade">
+        </div>
+        <div id="help"></div>
+    </form>
+
+    <script>
+        let help = document.querySelector('#help')
+        let inputs = document.querySelectorAll('input')
+
+        for (let input of Array.from(inputs)) {
+            input.addEventListener('focus', event => {
+                let text = event.target.getAttribute("data-help")
+                help.textContent = text
+            })
+
+            input.addEventListener('blur', event => {
+                help.textContent = ''
+            })
+        }
+    </script>
+
+</body>
+
+</html>

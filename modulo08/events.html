@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Dominando o JavaScript - Módulo 08</title>
+</head>
+
+
+<body>
+
+    <p>Clique em qualquer lugar da página.</p>
+
+    <button>Clique em mim</button>
+
+    <script>
+        window.addEventListener('click', () => {
+            console.log("Você clicou na página!");
+        })
+
+        var button = document.querySelector('button');
+        button.addEventListener('click', () => {
+            console.log("Você clicou no botão.")
+        })
+
+        button.addEventListener('mousedown', (event) => {
+            if (event.which == 1) {
+                console.log("Left button");
+            } else if (event.which == 2) {
+                console.log("Middle button");
+            } else if (event.which == 3) {
+                console.log("Rigth button");
+            }
+        })
+    </script>
+</body>
+
+</html>

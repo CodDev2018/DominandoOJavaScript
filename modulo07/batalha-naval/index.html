@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Batalha Naval</title>
+    <style>
+        #batalha {
+            position: relative;
+            height: 500px;
+            width: 500px;
+            border: 2px solid gray;
+        }
+
+        #batalha div {
+            position: absolute;
+            box-sizing: border-box;
+            height: 50px;
+            width: 50px;
+            border: 1px solid black;
+            background-color: lightgrey;
+        }
+    </style>
+</head>
+
+</html>
+
+<body>
+    <h1>Batalha Naval</h1>
+
+    <div id="batalha"></div>
+
+    <script>
+        const maxTiros = 17
+        let tirosCertos = 0
+        const tabuleiro = [
+            [0, 0, 0, 0, 1, 1, 1, 1, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 1, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 1, 0, 0, 0],
+            [1, 0, 0, 0, 0, 0, 1, 1, 1, 1],
+            [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [1, 0, 0, 0, 1, 1, 0, 0, 0, 0],
+            [1, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        ];
+
+        let tabuleiroBatalha = document.getElementById('batalha')
+
+        const preencherTabuleiro = () => {
+            for (let i = 0; i < 10; i++) {
+                for (let j = 0; j < 10; j++) {
+                    let posicao = document.createElement('div')
+                    if (tabuleiro[j][i] === 1) {
+                        posicao.setAttribute('data-alvo', 1)
+                    } else {
+                        posicao.setAttribute('data-alvo', 0)
+                    }
+                    tabuleiroBatalha.appendChild(posicao)
+                    posicao.style.top = (j * 50) + 'px'
+                    posicao.style.left = (i * 50) + 'px'
+                }
+            }
+        }
+
+        const lancarTorpedo = (event) => {
+            if (event.target === event.currentTarget) {
+                return
+            }
+            let value = event.target.getAttribute('data-alvo')
+            if (value === '0') {
+                event.target.style.background = 'darkgrey'
+                event.target.setAttribute('data-alvo', 3)
+            } else if (value === '1') {
+                event.target.style.background = 'blue'
+                event.target.setAttribute('data-alvo', 2)
+                tirosCertos++
+                if (tirosCertos === maxTiros) {
+                    alert("Todas as embarcações foram afundadas. Você Granhou!")
+                    location.reload()
+                }
+            } else if (value === '2') {
+                alert("Você já acetou um tiro nesta embarcação!")
+            } else if (value === '3') {
+                alert("Você já atirou nesse local!")
+            }
+        }
+
+        tabuleiroBatalha.addEventListener("click", lancarTorpedo, false)
+
+        preencherTabuleiro()
+    </script>
+</body>
