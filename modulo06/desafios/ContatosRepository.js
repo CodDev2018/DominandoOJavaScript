@@ -57,7 +57,7 @@ class ContatosRepository {
         this.contatos = JSON.parse(data)
     }
 
-    initilizeFile() {
+    initializeFile() {
         if (!fs.existsSync(fileName)) {
             console.log('Criando arquivo de contatos...')
             fs.writeFileSync(fileName, JSON.stringify([]))
