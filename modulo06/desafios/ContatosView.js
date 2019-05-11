@@ -14,7 +14,7 @@ class ContatosView {
     }
 
     print(contato, index) {
-        console.clear()
+       // console.clear()
         console.log('\n###Contato selecionado: ')
         let text = `Nome: ${contato.nome} \nTelefone: ${contato.telefone} \n` +
             `Endereço: ${contato.endereco} \nEmail: ${contato.email} \n`

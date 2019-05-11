@@ -4,7 +4,7 @@ const fileName = './contatos.json'
 class ContatosRepository {
     constructor() {
         this.contatos = []
-        this.inicializarArquivo()
+        this.initilizeFile()
     }
 
     get(index, contatos) {
@@ -12,12 +12,12 @@ class ContatosRepository {
         if (index < 0 || index > contatos) {
             return null
         }
-        return this.contatos[index]
+        return contatos[index]
     }
 
     add(model) {
         this.contatos.push(model)
-        this.atualizarArquivo()
+        this.updateFile()
     }
 
     edit(oldModel, newModel) {
@@ -27,13 +27,13 @@ class ContatosRepository {
         newModel.endereco = !newModel.endereco ? oldModel.endereco : newModel.endereco 
         newModel.email = !newModel.email ? oldModel.email : newModel.email 
         this.contatos[index] = newModel
-        this.atualizarArquivo()
+        this.updateFile()
     }
 
     delete(model) {
         let index = this.contatos.indexOf(model)
         this.contatos.splice(index, 1)
-        this.atualizarArquivo()
+        this.updateFile()
     }
 
     search(key) {
@@ -50,14 +50,14 @@ class ContatosRepository {
         return result
     }
 
-    atualizarArquivo() {
+    updateFile() {
         fs.truncateSync(fileName)
         fs.writeFileSync(fileName, JSON.stringify(this.contatos))
         const data = fs.readFileSync(fileName)
         this.contatos = JSON.parse(data)
     }
 
-    inicializarArquivo() {
+    initilizeFile() {
         if (!fs.existsSync(fileName)) {
             console.log('Criando arquivo de contatos...')
             fs.writeFileSync(fileName, JSON.stringify([]))
