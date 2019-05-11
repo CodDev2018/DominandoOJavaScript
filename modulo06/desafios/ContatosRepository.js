@@ -4,7 +4,7 @@ const fileName = './contatos.json'
 class ContatosRepository {
     constructor() {
         this.contatos = []
-        this.initilizeFile()
+        this.initializeFile()
     }
 
     get(index, contatos) {
