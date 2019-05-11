@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Campo Minado</title>
+    <style>
+        #campo {
+            position: relative;
+            height: 500px;
+            width: 500px;
+            border: 2px solid gray;
+        }
+
+        #campo div {
+            position: absolute;
+            box-sizing: border-box;
+            height: 50px;
+            width: 50px;
+            border: 1px solid black;
+            background-color: lightgrey;
+            text-align: center;
+            line-height: 50px;
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+    </style>
+</head>
+
+</html>
+
+<body>
+    <h1>Campo Minado</h1>
+
+    <div id="campo"></div>
+
+    <script>
+        const maxBombas = 20
+        let tirosCertos = 0
+        const campo = []
+        const dimensao = 10
+
+        const gerarCampo = () => {
+            for (let x = 0; x < dimensao; x++) {
+                campo[x] = []
+                for (let y = 0; y < dimensao; y++) {
+                    campo[x][y] = 0
+                }
+            }
+        }
+
+        const distribuirBombas = () => {
+            for (let i = 0; i < maxBombas; i++) {
+                let ok = false
+                do {
+                    let x = parseInt(Math.random() * dimensao)
+                    let y = parseInt(Math.random() * dimensao)
+                    if (campo[x][y] != 'B') {
+                        campo[x][y] = 'B'
+
+                        atualizarContadores(x, y)
+
+                        ok = true
+                    }
+                } while (!ok)
+            }
+        }
+
+        const atualizarContadores = (x, y) => {
+            for (let i = x - 1; i <= x + 1; i++) {
+                for (let j = y - 1; j <= y + 1; j++) {
+                    if (i == x && j == y) {
+                        continue
+                    }
+                    if ((i >= 0 && i < dimensao) &&
+                        (j >= 0 && j < dimensao) &&
+                        campo[i][j] != 'B') {
+                        campo[i][j]++
+                    }
+                }
+            }
+        }
+
+        let campoMinado = document.getElementById('campo')
+
+        const preencherCampo = () => {
+            gerarCampo()
+            distribuirBombas()
+            for (let x = 0; x < dimensao; x++) {
+                for (let y = 0; y < dimensao; y++) {
+                    let posicao = document.createElement('div')
+                    posicao.setAttribute('data-x', x)
+                    posicao.setAttribute('data-y', y)
+                    if (campo[x][y] === 'B') {
+                        posicao.setAttribute('data-alvo', 'B')
+                    } else {
+                        posicao.setAttribute('data-alvo', campo[x][y])
+                    }
+                    campoMinado.appendChild(posicao)
+                    posicao.style.top = (x * 50) + 'px'
+                    posicao.style.left = (y * 50) + 'px'
+                }
+            }
+        }
+
+        const getCell = (x, y) => {
+            return document.querySelector(`div[data-x="${x}"][data-y="${y}"]`)
+        }
+
+        const abrirZeros = (x, y, up, down, left, right) => {
+            tirosCertos++
+            let cell = getCell(x, y)
+            cell.style.background = 'grey'
+            for (let i = x - up; i <= x + down; i++) {
+                for (let j = y - left; j <= y + right; j++) {
+                    if (i == x && j == y) {
+                        continue
+                    }
+                    if (i >= 0 && i < dimensao && j >= 0 && j < dimensao) {
+                        let cell2 = getCell(i, j)
+                        if (campo[i][j] == 0 && cell2.style.background != 'grey') {
+                            let up = x >= i ? 1 : 0
+                            let down = x <= i ? 1 : 0
+                            let left = y >= j ? 1 : 0
+                            let right = y <= j ? 1 : 0
+                            abrirZeros(i, j, up, down, left, right)
+                        }
+                    }
+                }
+            }
+        }
+
+        const mostrarTodasBombas = () => {
+            for (let x = 0; x < dimensao; x++) {
+                for (let y = 0; y < dimensao; y++) {
+                    if (campo[x][y] == 'B') {
+                        let cell = getCell(x, y)
+                        cell.style.background = 'red'
+                    }
+                }
+            }
+        }
+
+        const pisaNoCampo = (event) => {
+            if (event.target === event.currentTarget) {
+                return
+            }
+            let value = event.target.getAttribute('data-alvo')
+            let x = event.target.getAttribute('data-x')
+            let y = event.target.getAttribute('data-y')
+            if (value === 'B') {
+                event.target.style.background = 'red'
+                mostrarTodasBombas()
+                setTimeout(() => {
+                    alert("Explodiu a bomba! Você perdeu.")
+                    location.reload()
+                }, 500)
+            } else if (value > 0) {
+                tirosCertos++
+                event.target.textContent = value
+                event.target.style.background = 'grey'
+            } else if (value == 0) {
+                abrirZeros(x, y, 1, 1, 1, 1)
+            }
+
+            if (tirosCertos == (dimensao*dimensao) - maxBombas) {
+                mostrarTodasBombas()
+                setTimeout(() => {
+                    alert("Você ganhou!")
+                    location.reload()
+                }, 500)
+            }
+        }
+
+        campoMinado.addEventListener("click", pisaNoCampo, false)
+
+        preencherCampo()
+    </script>
+</body>

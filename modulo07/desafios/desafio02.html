@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <title>Dominando o JavaScript</title>
+    <style>
+        html, body{
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <p style="height: 100vh; margin: 0" id="frame">
+        <img src="../img/logo.png" id="logo01" style="position: absolute" width="50">
+        <img src="../img/logo.png" id="logo02" style="position: absolute" width="50">
+    </p>
+    <script>
+        const logo1 = document.querySelector("#logo01");
+        const logo2 = document.querySelector("#logo02");
+        const frame = document.querySelector("#frame");
+
+        const centerWidth = frame.clientWidth / 2
+        const centerHeight = frame.clientHeight / 2
+
+        let angle = 0;
+        let lastTime = null;
+
+        function animate(time) {
+            if (lastTime != null)
+                angle += (time - lastTime) * 0.002;
+            lastTime = time;
+            logo1.style.top = (centerHeight + (Math.sin(angle) * 200)) + "px";
+            logo1.style.left = (centerWidth + (Math.cos(angle) * 200)) + "px";
+            logo2.style.top = (centerHeight + (Math.cos(angle) * 200)) + "px";
+            logo2.style.left = (centerWidth + (Math.sin(angle) * 200)) + "px";
+            requestAnimationFrame(animate);
+        }
+
+        requestAnimationFrame(animate);
+    </script>
+</body>
+
+</html>
