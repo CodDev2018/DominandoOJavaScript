@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Agenda de Contatos</title>
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+
+        * {
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+        }
+
+        header {
+            box-sizing: border-box;
+            height: 80px;
+            background-color: #444;
+            color: #fff;
+            padding: 10px;
+        }
+
+        h1 {
+            margin: 0;
+            line-height: 60px;
+            vertical-align: center;
+        }
+
+        .listagem-contatos {
+            margin: 10px;
+        }
+
+        #btn-novo {
+            display: block;
+            margin-top: 10px;
+            width: 100%;
+            height: 50px;
+            font-size: 2em;
+            border: 1px solid #030;
+            background-color: #096;
+            color: #fff;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .listagem-contatos ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .listagem-contatos li {
+            height: 50px;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        .listagem-contatos li a {
+            display: block;
+            height: 30px;
+            line-height: 30px;
+            font-size: 1.5em;
+            text-decoration: none;
+        }
+
+        .listagem-contatos li a:first-child {
+            flex-grow: 2;
+        }
+
+        .listagem-contatos li a:last-child {
+            margin-left: 10px;
+        }
+
+        .listagem-contatos li a.action {
+            box-sizing: content-box;
+            padding: 10px;
+            height: 15px;
+            line-height: initial;
+            font-size: 0.9em;
+            border-radius: 4px;
+            background-color: red;
+            color: #fff;
+        }
+
+        .listagem-contatos li a.action.edit {
+            background-color: #06d;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Agenda de contatos</h1>
+    </header>
+    <section>
+        <article class="listagem-contatos">
+            <ul>
+                
+            </ul>
+            <button id="btn-novo">Novo Contato</button>
+        </article>
+    </section>
+
+    <script src="ContatosModel.js"></script>
+    <script src="ContatosRepository.js"></script>
+    <script src="ContatosView.js"></script>
+    <script src="ContatosController.js"></script>
+    <script>
+        const view = new ContatosView()
+        const repository = new ContatosRepository()
+        const controller = new ContatosController(view, repository)
+        view.controller = controller
+        controller.list()
+    </script>
+</body>
+
+</html>
