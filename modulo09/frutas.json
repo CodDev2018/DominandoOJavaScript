@@ -1,0 +1,9 @@
+{
+    "frutas": [{
+        "nome": "Maçã"
+    }, {
+        "nome": "Banana"
+    }, {
+        "nome": "Melão"
+    }]
+}

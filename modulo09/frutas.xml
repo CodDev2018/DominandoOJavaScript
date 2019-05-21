@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<frutas>
+    <fruta>
+        <nome>Maçã</nome>
+    </fruta>
+    <fruta>
+        <nome>Banana</nome>
+    </fruta>
+    <fruta>
+        <nome>Melão</nome>
+    </fruta>
+</frutas>
