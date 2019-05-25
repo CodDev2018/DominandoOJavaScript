@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Agenda de Contatos</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/form.css">
+</head>
+
+<body>
+    <header>
+        <h1>Agenda de contatos</h1>
+    </header>
+    <section class="section-form">
+        <form name="contatoForm">
+            <div class="form-field">
+                <label for="inputNome">Nome</label>
+                <input type="text" id="inputNome" required placeholder="Seu nome completo...">
+            </div>
+            <div class="form-field">
+                <label for="inputTelefone">Telefone <small>Ex: (XX) XXXXX-XXXX</small></label>
+                <input type="text" id="inputTelefone" placeholder="Ex: (XX) XXXXX-XXXX" required
+                    pattern="^\([1-9]{2}\) (?:[2-8]|9[1-9])[0-9]{3}\-[0-9]{4}$">
+            </div>
+            <div class="form-field">
+                <label for="inputEmail">E-mail <small>Ex: email@email.com</small></label>
+                <input type="email" id="inputEmail" placeholder="Ex: email@email.com" required>
+            </div>
+            <div class="form-field">
+                <label for="textEndereco">Endereço</label>
+                <textarea id="textEndereco" cols="30" rows="10"></textarea>
+            </div>
+            <div class="form-action">
+                <a href="./index.html">&larr; Voltar</a>
+                <button type="reset">Limpar</button>
+                <button type="submit" class="success">Salvar</button>
+            </div>
+        </form>
+    </section>
+
+    <script src="./js/ContatosModel.js"></script>
+    <script src="./js/ContatosRepository.js"></script>
+    <script src="./js/ContatosFormView.js"></script>
+    <script src="./js/ContatosController.js"></script>
+    <script>
+        const view = new ContatosFormView()
+        const repository = new ContatosRepository()
+        const controller = new ContatosController(view, repository)
+        view.controller = controller
+    </script>
+</body>
+
+</html>
