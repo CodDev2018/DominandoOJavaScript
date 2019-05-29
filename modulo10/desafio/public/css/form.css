@@ -1,0 +1,59 @@
+.section-form {
+    width: 600px;
+    margin: 20px auto;
+    padding: auto;
+}
+
+.form-field {
+    width: 100%;
+    display: flex;
+    margin-bottom: 10px;
+    min-height: 45px;
+}
+
+.form-field label {
+    width: 30%;
+    text-align: right;
+    padding-right: 10px;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.form-field label small {
+    display: block;
+    color: #999;
+}
+
+.form-field input,
+.form-field textarea {
+    width: 70%;
+    border: 1px solid #999;
+    border-radius: 4px;
+    padding: 5px;
+}
+
+.form-action {
+    text-align: right;
+}
+
+.form-action a {
+    text-decoration: none;
+    color: #999;
+    font-weight: bolder;
+    font-size: 1.3em;
+}
+
+.form-action button {
+    cursor: pointer;
+    border: 1px solid #333;
+    border-radius: 4px;
+    background-color: #666;
+    color: #fff;
+    padding: 5px;
+    font-size: 1.3em;
+}
+
+.form-action button.success {
+    border: 1px solid #060;
+    background-color: #090;
+}

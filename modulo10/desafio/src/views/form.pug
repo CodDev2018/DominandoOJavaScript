@@ -1,0 +1,11 @@
+extends layout.pug
+
+block links
+  link(rel="stylesheet", href="/css/form.css")
+
+block content
+    section.section-form
+        if (contato)
+            include form-update.pug
+        else
+            include form-create.pug

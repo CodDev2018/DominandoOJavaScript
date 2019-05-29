@@ -1,0 +1,23 @@
+extends layout.pug
+
+block content
+  section
+    article.listagem-contatos
+      ul
+        each contato in contatos 
+          li
+            a(href="/edit/"+contato.id)=contato.nome
+            a(href="/delete/"+contato.id class="action delete") Excluir
+      a#btn-novo(href="/new") Novo Contato
+
+block scripts
+  script.
+    Array.from(document.querySelectorAll('.delete'))
+      .forEach(btn => 
+        btn.addEventListener('click', event=> {
+          event.preventDefault()
+          if (confirm("Deseja mesmo excluir o contato?")) {
+            window.location.replace(event.target.href)
+          }
+        })
+      )

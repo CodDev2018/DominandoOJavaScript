@@ -1,0 +1,22 @@
+form(name='contatoForm' action="/save" method="post")
+    .form-field
+        label(for='inputNome') Nome
+        input#inputNome(name='nome', type='text', required='', placeholder='Seu nome completo...')
+    .form-field
+        label(for='inputTelefone') Telefone 
+            small Ex: (XX) XXXXX-XXXX
+        input#inputTelefone(name='telefone', type='text', placeholder='Ex: (XX) XXXXX-XXXX', required='')
+    .form-field
+        label(for='inputEmail') E-mail 
+            small Ex: email@email.com
+        input#inputEmail(name='email', type='email', placeholder='Ex: email@email.com', required='')
+    .form-field
+        label(for='textEndereco') Endereço
+        textarea#textEndereco(name='endereco', cols='30', rows='10')
+    .form-action
+        a(href='./index.html') ← Voltar 
+        | &nbsp;
+        button(type='reset') Limpar 
+        | &nbsp;
+        button.success(type='submit') Salvar 
+        | &nbsp;
